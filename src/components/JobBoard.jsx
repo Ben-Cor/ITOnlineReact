@@ -13,7 +13,7 @@ function JobBoard() {
     }
 
     return (
-    <div>
+    <div className="m-4">
         <h1 className="text-2xl">{companyName}</h1>
         <p>{getJobMessage()}</p>
     </div>
