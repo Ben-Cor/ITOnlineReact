@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import ProfileCard from './components/ProfileCard'
-import VariableDisplay from './components/VariableDisplay'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,7 +15,6 @@ function App() {
       image={'src/assets/react.svg'} 
       bio={'I am an aspiring software engineer with a passion for building web applications. I love learning new technologies and improving my skills.'}
       />
-      <VariableDisplay />
     </>
   )
 }
