@@ -15,6 +15,7 @@ function DymanicForm () {
         e.preventDefault();
         setFormData("");
         setCharacterCount(0);
+        setFormMessages([]);
         document.getElementById("text").value = "";
     }
 
