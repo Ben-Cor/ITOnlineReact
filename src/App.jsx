@@ -2,10 +2,9 @@ import { useState } from 'react'
 import Header from './components/Header'
 import ProfileCard from './components/ProfileCard'
 import JobBoard from './components/JobBoard'
-import StyledButton from './components/StyledButton'
-import JobCounter from './components/JobCounter'
 import DynamicForm from './components/DynamicForm'
 import BotListManager from './components/BotListManager'
+import Footer from './components/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,10 +20,9 @@ function App() {
       bio={'I am an aspiring software engineer with a passion for building web applications. I love learning new technologies and improving my skills.'}
       />
       <JobBoard />
-      <StyledButton />
-      <JobCounter />
       <DynamicForm />
       <BotListManager />
+      <Footer />
     </div>
   )
 }

@@ -1,6 +1,6 @@
-function Header() {
+export default function Header() {
     return (
-        <header className="bg-gray-800 text-white p-4 flex justify-around items-center">
+        <header className="sticky bg-gray-800 text-white p-4 flex justify-around items-center">
             <h1 className="text-2xl font-bold">My Application</h1>
             <nav className="mt-2">
                 <ul className="flex space-x-4">
@@ -12,5 +12,3 @@ function Header() {
         </header>
     )
 }
-
-export default Header
