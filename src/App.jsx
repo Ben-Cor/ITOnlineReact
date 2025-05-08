@@ -3,6 +3,7 @@ import Header from './components/Header'
 import ProfileCard from './components/ProfileCard'
 import JobBoard from './components/JobBoard'
 import StyledButton from './components/StyledButton'
+import JobCounter from './components/JobCounter'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
       />
       <JobBoard />
       <StyledButton />
+      <JobCounter />
     </div>
   )
 }
