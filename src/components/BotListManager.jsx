@@ -17,6 +17,8 @@ function BotListManager() {
         status: "inactive"
     });
 
+    const [show, setShow] = useState(false);
+
     function handleTriggerJob(id) {
         setBots((prevBots) =>
             //map through the previous bots
@@ -44,7 +46,9 @@ function BotListManager() {
         e.preventDefault();
         if (newBot.name && newBot.description) {
             setBots((prevBots) => [
+                // get previous bots
                 ...prevBots,
+                // add new bot to the list
                 {
                     id: Date.now(),
                     name: newBot.name,
@@ -52,6 +56,7 @@ function BotListManager() {
                     status: newBot.status,
                 },
             ]);
+            // reset the new bot object to its initial state
             setNewBot({
                 id: "",
                 name: "",
@@ -102,7 +107,8 @@ function BotListManager() {
                 <button className="border-2 p-2" type="submit" onClick={(e) => addBotToList(e)}>Add</button>
             </form>
             <ul className="flex flex-wrap items-center justify-center gap-4 bg-neutral-200 shadow-lg rounded-lg p-4 m-4">
-                {bots.map((bot) => {
+                <button className="border-2 p-2 rounded-md" onClick={() => setShow(!show)}> Click to show/hide</button>
+                {show && bots.map((bot) => {
                     return (
                         <li key={bot.id} className="flex flex-col items-center gap-4 bg-neutral-200 shadow-lg rounded-lg p-4 m-4 w-[300px] border-2">
                             <h2 className="text-2xl">{bot.name}</h2>
