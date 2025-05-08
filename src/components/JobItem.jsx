@@ -1,32 +1,41 @@
 import { useState } from "react";
 import JobList from "./JobList";
+import StatusBoard from "./StatusBoard";
 
 export default function JobItem() {
     const [bots, setBots] = useState([
-        { id: 1, name: "Email Extractor", description: "Extracts emails from text", status: "active" },
-        { id: 2, name: "Data Scraper", description: "Scrapes data from websites", status: "inactive" },
-        { id: 3, name: "Sentiment Analyzer", description: "Analyzes sentiment of text", status: "active" },
-        { id: 4, name: "Keyword Extractor", description: "Extracts keywords from text", status: "inactive" },
-        { id: 5, name: "Text Summarizer", description: "Summarizes text", status: "active" },
+        { id: 1, name: "Email Extractor", description: "Extracts emails from text", status: "Completed" },
+        { id: 2, name: "Data Scraper", description: "Scrapes data from websites", status: "In Progress" },
+        { id: 3, name: "Sentiment Analyzer", description: "Analyzes sentiment of text", status: "Failed" },
+        { id: 4, name: "Keyword Extractor", description: "Extracts keywords from text", status: "Completed" },
+        { id: 5, name: "Text Summarizer", description: "Summarizes text", status: "In Progress" },
     ]);
 
     const [newBot, setNewBot] = useState({
         id: "",
         name: "",
         description: "",
-        status: "inactive"
+        status: "Failed"
     });
 
     const [show, setShow] = useState(false);
 
     function handleTriggerJob(id) {
-        setBots((prevBots) =>
-            prevBots.map((bot) =>
-                bot.id === id
-                    ? { ...bot, status: bot.status === "active" ? "inactive" : "active" }
-                    : bot
-            )
-        );
+    setBots((prevBots) =>
+        prevBots.map((bot) =>
+            bot.id === id
+                ? {
+                        ...bot,
+                        status:
+                            bot.status === "Completed"
+                                ? "In Progress"
+                                : bot.status === "In Progress"
+                                ? "Failed"
+                                : "Completed",
+                    }
+                : bot
+        )
+    );
     }
 
     function handleDeleteJob(id) {
@@ -52,12 +61,16 @@ export default function JobItem() {
                 id: "",
                 name: "",
                 description: "",
-                status: "inactive",
+                status: "Failed",
             });
         } else {
             alert("Please fill in all fields");
         }
     }
+
+    const completedJobs = bots.filter((bot) => bot.status === "Completed").length;
+    const inProgressJobs = bots.filter((bot) => bot.status === "In Progress").length;
+    const failedJobs = bots.filter((bot) => bot.status === "Failed").length;
 
     return (
         <div>
@@ -88,8 +101,9 @@ export default function JobItem() {
                 placeholder="Bot Status" 
                 value={newBot.status} 
                 onChange={(e) => setNewBot({ ...newBot, status: e.target.value })}>
-                    <option value="inactive">Inactive</option>
-                    <option value="active">Active</option>
+                    <option value="Completed">Completed</option>
+                    <option value="In Progress">In Progess</option>
+                    <option value="Failed">Failed</option>
                 </select>
                 <button className="border-2 p-2" type="submit" onClick={(e) => addBotToList(e)}>Add</button>
             </form>
@@ -103,6 +117,7 @@ export default function JobItem() {
                     onDeleteJob={handleDeleteJob}
                 />
             )}
+            <StatusBoard completed={completedJobs} inProgress={inProgressJobs} failed={failedJobs}/>
         </div>
     );
 }

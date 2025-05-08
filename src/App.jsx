@@ -21,7 +21,6 @@ function App() {
       bio={'I am an aspiring software engineer with a passion for building web applications. I love learning new technologies and improving my skills.'}
       />
       <JobItem />
-      <StatusBoard />
       <Footer />
     </div>
   )

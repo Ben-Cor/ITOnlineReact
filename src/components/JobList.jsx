@@ -3,7 +3,7 @@ import JobItem from "./JobItem";
 export default function JobList({ jobs, onTriggerJob, onDeleteJob }) {
 
     const textColour = (status) => { 
-        return status === "active" ? "text-green-700" : "text-red-500";
+        return status === "Completed" ? "text-green-700" : "text-red-500";
     }
     
     return (
