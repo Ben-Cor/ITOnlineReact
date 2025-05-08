@@ -10,6 +10,13 @@ function BotListManager() {
         { id:5, name: "Text Summarizer", description: "Summarizes text", status: "active" },
     ]);
 
+    const [newBot, setNewBot] = useState({
+        id: "",
+        name: "",
+        description: "",
+        status: "inactive"
+    });
+
     function handleTriggerJob(id) {
         setBots((prevBots) =>
             //map through the previous bots
@@ -33,12 +40,67 @@ function BotListManager() {
         setBots(bots.filter(bot => bot.id !== id));
     }
 
+    function addBotToList(e) {
+        e.preventDefault();
+        if (newBot.name && newBot.description) {
+            setBots((prevBots) => [
+                ...prevBots,
+                {
+                    id: Date.now(),
+                    name: newBot.name,
+                    description: newBot.description,
+                    status: newBot.status,
+                },
+            ]);
+            setNewBot({
+                id: "",
+                name: "",
+                description: "",
+                status: "inactive",
+            });
+        } else {
+            alert("Please fill in all fields");
+        }
+    }
+
     const textColour = (status) => { 
         return status === "active" ? "text-green-700" : "text-red-500";
     }
 
     return (
         <div >
+            <form action="" className="mt-4">
+                <input 
+                className="border-2 p-2 rounded-md mx-4" 
+                type="text" name="botName" 
+                placeholder="Bot Name" 
+                id="botName" 
+                value={newBot.name} 
+                onChange={(e) => setNewBot({...newBot, name: e.target.value})}
+                />
+                <input 
+                className="border-2 p-2 rounded-md mx-4" 
+                type="text" name="botDescription" 
+                placeholder="Bot Description" 
+                id="botDescription" 
+                value={newBot.description}
+                // event sets the new bot description to the value of the input field
+                // ...newBot is used to keep the other properties of the new bot object intact
+                // e.target.value is the value of the input field
+                onChange={(e) => setNewBot({...newBot, description: e.target.value})} 
+                />
+                <select 
+                className="border-2 p-2 rounded-md mx-4" 
+                name="botStatus" 
+                id="botstatus" 
+                placeholder="Bot Status" 
+                value={newBot.status} 
+                onChange={(e) => setNewBot({ ...newBot, status: e.target.value })}>
+                    <option value="inactive">Inactive</option>
+                    <option value="active">Active</option>
+                </select>
+                <button className="border-2 p-2" type="submit" onClick={(e) => addBotToList(e)}>Add</button>
+            </form>
             <ul className="flex flex-wrap items-center justify-center gap-4 bg-neutral-200 shadow-lg rounded-lg p-4 m-4">
                 {bots.map((bot) => {
                     return (
