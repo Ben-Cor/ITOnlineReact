@@ -4,6 +4,7 @@ import ProfileCard from './components/ProfileCard'
 import JobBoard from './components/JobBoard'
 import StyledButton from './components/StyledButton'
 import JobCounter from './components/JobCounter'
+import DynamicForm from './components/DynamicForm'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,6 +22,7 @@ function App() {
       <JobBoard />
       <StyledButton />
       <JobCounter />
+      <DynamicForm />
     </div>
   )
 }
