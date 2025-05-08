@@ -24,6 +24,15 @@ function BotListManager() {
         );
     }
 
+
+    // bots is an array of objects
+    // .filter(bot => bot.id !== id) creates a new array that excludes the bot whose id matches the id passed to the function.
+    //setBotsValue is a state-updating function (like useState's setter) that replaces the old bots array with the newly filtered array.
+    function handleDeleteJob(id) {
+        console.log(`${id} -  deleted`);
+        setBots(bots.filter(bot => bot.id !== id));
+    }
+
     const textColour = (status) => { 
         return status === "active" ? "text-green-700" : "text-red-500";
     }
@@ -38,6 +47,7 @@ function BotListManager() {
                             <p>{bot.description}</p>
                             <p className={textColour(bot.status)}>Status: {bot.status}</p>
                             <button className="p-2 border-2 rounded-md" onClick={() => handleTriggerJob(bot.id)}>Trigger Job</button>
+                            <button className="p-2 border-2 rounded-md" onClick={() => handleDeleteJob(bot.id)}>Delete Job</button>
                         </li>
                     )
                 })}
