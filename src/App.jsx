@@ -5,6 +5,7 @@ import JobItem from './components/JobItem'
 import JobList from './components/JobList'
 
 import Footer from './components/Footer'
+import StatusBoard from './components/StatusBoard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,6 +21,7 @@ function App() {
       bio={'I am an aspiring software engineer with a passion for building web applications. I love learning new technologies and improving my skills.'}
       />
       <JobItem />
+      <StatusBoard />
       <Footer />
     </div>
   )
