@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import ProfileCard from './components/ProfileCard'
-import JobBoard from './components/JobBoard'
-import DynamicForm from './components/DynamicForm'
-import BotListManager from './components/BotListManager'
+import JobItem from './components/JobItem'
+import JobList from './components/JobList'
+
 import Footer from './components/Footer'
 
 function App() {
@@ -19,9 +19,7 @@ function App() {
       image={'src/assets/react.svg'} 
       bio={'I am an aspiring software engineer with a passion for building web applications. I love learning new technologies and improving my skills.'}
       />
-      <JobBoard />
-      <DynamicForm />
-      <BotListManager />
+      <JobItem />
       <Footer />
     </div>
   )
