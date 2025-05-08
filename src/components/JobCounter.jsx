@@ -5,7 +5,17 @@ function JobCounter() {
     const [jobCount, setJobCount] = useState(0);
 
     function handleJobAdd() {
-        setJobCount(prevCount => prevCount + 1);
+        setJobCount(jobCount + 1);
+    }
+
+    function handleJobRemove() {
+        if (jobCount > 0) {
+            setJobCount(jobCount - 1);
+        }
+    }
+
+    function handleJobReset() {
+        setJobCount(0);
     }
 
     return (
@@ -13,6 +23,8 @@ function JobCounter() {
             <h1 className="text-2xl">Job Counter</h1>
             <p>Count: {jobCount}</p>
             <button className="border-2 rounded-md p-2" onClick={handleJobAdd}>Add a Job</button>
+            <button className="border-2 rounded-md p-2" onClick={handleJobRemove}>Remove a job</button>
+            <button className="border-2 rounded-md p-2" onClick={handleJobReset}>Reset</button>
         </div>
     )
 }
