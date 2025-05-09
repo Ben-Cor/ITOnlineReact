@@ -4,6 +4,7 @@ import completed from '../assets/completed.svg';
 import JobColumn from '../components/JobColumn';
 import { useState } from 'react';
 import FormButton from './FormButton';
+import CategorySelector from './CategorySelector';
 
 export default function JobTypes() {
     const [jobs, setJobs] = useState([
@@ -37,7 +38,7 @@ export default function JobTypes() {
 
     function addJob(e) {
         e.preventDefault(); // Prevent form submission from reloading the page
-        if (formInputs.name && formInputs.description) {
+        if (formInputs.name && formInputs.description && formInputs.categories.length > 0) {
             const newJob = {
                 id: jobs.length + 1, 
                 name: formInputs.name,
@@ -63,18 +64,29 @@ export default function JobTypes() {
     };
 
     const handleCategoryChange = (category) => {
-        setFormInputs((prevInputs) => ({
-            ...prevInputs,
-            categories: prevInputs.categories.includes(category)
-                ? prevInputs.categories.filter((cat) => cat !== category) // Remove category if it exists
-                : [...prevInputs.categories, category], // Add category if it doesn't exist
-        }));
-    };
+        setFormInputs((prevInputs) => {
+            // Check if the category already exists
+            const isCategorySelected = prevInputs.categories.includes(category);
 
-    const currentCategories = () => {
-        return formInputs.categories.length > 0
-            ? formInputs.categories.join(', ')
-            : "No categories selected";
+            // If the category is already selected, remove it
+            if (isCategorySelected) {
+                return {
+                    ...prevInputs,
+                    categories: prevInputs.categories.filter((cat) => cat !== category),
+                };
+            }
+
+            // If no category is selected, add the new category
+            if (prevInputs.categories.length < 1) {
+                return {
+                    ...prevInputs,
+                    categories: [...prevInputs.categories, category],
+                };
+            }
+
+            // If there are already a category, do nothing
+            return prevInputs;
+        });
     };
 
     return (
@@ -112,13 +124,7 @@ export default function JobTypes() {
                         <option value="Important">Important</option>
                     </select>
                 </div>
-                <div className="flex gap-4 justify-center items-center">
-                    <p>Categories: </p>
-                    <FormButton value={"Read Mails"} onClick={() => handleCategoryChange("Read Mails")} />
-                    <FormButton value={"Send Mail"} onClick={() => handleCategoryChange("Send Mail")} />
-                    <FormButton value={"Web Parsing"} onClick={() => handleCategoryChange("Web Parsing")} />
-                </div>
-                <p>Current Categories: {currentCategories()}</p>
+                <CategorySelector handleCategoryChange={handleCategoryChange} selectedCategories={formInputs.categories}/>
                 <button
                     type="submit"
                     className="border-2 border-blue-500 p-2 bg-blue-500 text-white rounded-md"
