@@ -2,11 +2,9 @@ import { useState } from 'react'
 import Header from './components/Header'
 // import ProfileCard from './components/ProfileCard'
 // import JobItem from './components/JobItem'
-import JobColumn from './components/JobColumn'
 import Footer from './components/Footer'
-import important from './assets/important.svg'
-import inProgress from './assets/in-progress.svg'
-import completed from './assets/completed.svg'
+import JobTypes from './components/JobTypes'
+
 
 
 function App() {
@@ -23,11 +21,7 @@ function App() {
       bio={'I am an aspiring software engineer with a passion for building web applications. I love learning new technologies and improving my skills.'}
       /> */}
       {/* <JobItem /> */}
-      <div className='mb-20'>
-        <JobColumn title={'Important'} image={important} imageAlt={'Important'}/>
-        <JobColumn title={'In Progress'} image={inProgress} imageAlt={'In Progress'}/>
-        <JobColumn title={'Completed'} image={completed} imageAlt={'Completed'}/>
-      </div>
+      <JobTypes />
       <Footer />
     </div>
   )
