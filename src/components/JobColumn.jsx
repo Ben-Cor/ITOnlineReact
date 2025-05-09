@@ -1,6 +1,6 @@
 import JobStatus from "./JobStatus";
 
-export default function JobForm({ title, image, imageAlt, deleteJob, jobs }) {
+export default function JobForm({ title, image, imageAlt, deleteJob, jobs, changeStatus }) {
     // Filter jobs based on the title matching the job's status
     const filteredJobs = jobs.filter((job) => job.status === title);
 
@@ -14,6 +14,7 @@ export default function JobForm({ title, image, imageAlt, deleteJob, jobs }) {
                     key={job.id} // Use a unique key for each JobStatus
                     task={job.name} // Pass the job name as the task
                     deleteJob={deleteJob} // Pass the deleteJob function
+                    changeStatus = {changeStatus} // Pass the job status
                     job={job} // Pass the entire job object
                 />
             ))}

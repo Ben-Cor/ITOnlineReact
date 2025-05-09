@@ -17,11 +17,19 @@ export default function JobTypes() {
         setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
     }
 
+    const changeStatus = (id, event) => {
+        const newStatus = event.target.value; // Get the new status from the select element
+        setJobs((prevJobs) =>
+            prevJobs.map((job) =>
+                job.id === id ? { ...job, status: newStatus } : job
+            )
+        )};
+
     return (
         <div className='mb-20'>
-            <JobColumn title={'Important'} image={importantIcon} imageAlt={'importantIcon'} deleteJob={deleteJob} jobs={jobs}/>
-            <JobColumn title={'In Progress'} image={inProgress} imageAlt={'In Progress'} deleteJob={deleteJob} jobs={jobs}/>
-            <JobColumn title={'Completed'} image={completed} imageAlt={'Completed'} deleteJob={deleteJob} jobs={jobs} />
+            <JobColumn title={'Important'} image={importantIcon} imageAlt={'importantIcon'} deleteJob={deleteJob} changeStatus={changeStatus} jobs={jobs}/>
+            <JobColumn title={'In Progress'} image={inProgress} imageAlt={'In Progress'} deleteJob={deleteJob} changeStatus={changeStatus} jobs={jobs}/>
+            <JobColumn title={'Completed'} image={completed} imageAlt={'Completed'} deleteJob={deleteJob} changeStatus={changeStatus} jobs={jobs} />
         </div>
 );
 }

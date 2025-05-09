@@ -1,7 +1,7 @@
 import FormButton from "./FormButton";
 import deleteIcon from "../assets/delete.svg";
 
-export default function JobStatus({task, deleteJob, job}) {
+export default function JobStatus({task, deleteJob, job, changeStatus}) {
 
 
 
@@ -14,6 +14,11 @@ export default function JobStatus({task, deleteJob, job}) {
                     <FormButton value={"SAP Extraction"} />
                 </div>
                 <FormButton onClick={() => deleteJob(job.id)} value={<img className="w-[50px] h-[75px]" src={deleteIcon} alt="delete" />} />
+                <select defaultValue={job.status} onChange={(e) => changeStatus(job.id, e)} className="border-2 border-blue-500 p-2" name="status" id="status">
+                    <option value="Completed">Completed</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Important">Important</option>
+                </select>
             </div>
         </article>
     );
