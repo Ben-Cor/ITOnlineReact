@@ -1,7 +1,7 @@
 import FormButton from "./FormButton";
 import deleteIcon from "../assets/delete.svg";
 
-export default function JobStatus({task, deleteJob, job, changeStatus}) {
+export default function JobStatus({task, deleteJob, job, changeStatus, categories}) {
 
 
 
@@ -20,6 +20,8 @@ export default function JobStatus({task, deleteJob, job, changeStatus}) {
                     <option value="Important">Important</option>
                 </select>
             </div>
+            <p>Description: {job.description}</p>
+            <p>Categories: {categories.join(', ')}</p>
         </article>
     );
 }
