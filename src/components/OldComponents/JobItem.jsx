@@ -1,7 +1,7 @@
 import { useState } from "react";
-import JobList from "./JobList";
+import JobList from "../JobList";
 import StatusBoard from "./StatusBoard";
-import JobForm from "./JobForm";
+import JobForm from "../JobForm";
 
 export default function JobItem() {
     const [bots, setBots] = useState([
