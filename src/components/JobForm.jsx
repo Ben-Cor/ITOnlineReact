@@ -1,8 +1,10 @@
+import './JobForm.css';
+
 export default function JobForm({ addBotToList, newBot, setNewBot }) {
     return (
-        <form action="" className="mt-4">
+        <form action="" className="form-style">
                 <input 
-                className="border-2 p-2 rounded-md mx-4" 
+                className="input-style" 
                 type="text" name="botName" 
                 placeholder="Bot Name" 
                 id="botName" 
@@ -10,7 +12,7 @@ export default function JobForm({ addBotToList, newBot, setNewBot }) {
                 onChange={(e) => setNewBot({...newBot, name: e.target.value})}
                 />
                 <input 
-                className="border-2 p-2 rounded-md mx-4" 
+                className="input-style"
                 type="text" name="botDescription" 
                 placeholder="Bot Description" 
                 id="botDescription" 
@@ -21,7 +23,7 @@ export default function JobForm({ addBotToList, newBot, setNewBot }) {
                 onChange={(e) => setNewBot({...newBot, description: e.target.value})} 
                 />
                 <select 
-                className="border-2 p-2 rounded-md mx-4" 
+                className="input-style" 
                 name="botStatus" 
                 id="botstatus" 
                 placeholder="Bot Status" 

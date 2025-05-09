@@ -74,10 +74,10 @@ export default function JobItem() {
     const failedJobs = bots.filter((bot) => bot.status === "Failed").length;
 
     return (
-        <div>
+        <div className="bg-neutral-200">
             <JobForm addBotToList={addBotToList} setNewBot={setNewBot} newBot={newBot}/>
-            <button className="border-2 p-2 rounded-md" onClick={() => setShow(!show)}>
-                Click to show/hide
+            <button className="border-2 p-2 rounded-md flex justify-center items-center w-full hover:bg-neutral-600 hover:text-white" onClick={() => setShow(!show)}>
+                Click to show/hide Jobs
             </button>
             {show && (
                 <JobList

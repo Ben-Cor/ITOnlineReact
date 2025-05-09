@@ -7,7 +7,7 @@ export default function JobList({ jobs, onTriggerJob, onDeleteJob }) {
     }
     
     return (
-        <ul className="flex flex-wrap items-center justify-center gap-4 bg-neutral-200 shadow-lg rounded-lg p-4 m-4">
+        <ul className="flex flex-wrap items-center justify-center gap-4 bg-neutral-200 p-4 m-4">
             {jobs.map((job) => (
                 <li key={job.id} className="flex flex-col items-center gap-4 bg-neutral-200 shadow-lg rounded-lg p-4 m-4 w-[300px] border-2">
                     <h2 className="text-2xl">{job.name}</h2>
